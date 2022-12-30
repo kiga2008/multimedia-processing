@@ -69,7 +69,7 @@ def safe_name(file_name: str):
 
 
 def gen_kv_str():
-    kv_string = "\n**Below is your current configuration**\n\n"
+    kv_string = "\n**下方是您当前的配置**\n\n"
     for k, v in conf.config.dict().items():
         kv_string += f"`{k} : {v}`\n"
     return kv_string
