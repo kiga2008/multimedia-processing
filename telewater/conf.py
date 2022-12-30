@@ -5,7 +5,7 @@ from watermark import Position
 
 
 class Config(BaseModel):
-    watermark: str = "https://user-images.githubusercontent.com/66209958/120103496-7b59a280-c16d-11eb-9590-3ad6b55e163c.png"
+    watermark: str = "https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png"
     frame_rate: int = 15
     preset: str = "ultrafast"
     position: Position = Position.centre
@@ -18,23 +18,23 @@ class Config(BaseModel):
         return val
 
 
-START = """I am alive!"""
+START = """正在工作中!"""
 
 HELP = """
-Using the bot is very simple. Just send a photo, video or gif to the bot. The bot will reply with the watermarked media.
+使用方法很简单，只需要发送一张图片、视频、gif，机器人会自动打好水印并返回。
 
-The bot commands `/set` and `/get` can set and get the value of the configuration variables. The commands are simple and intuitive. The bot will show you the usage if you send an incorrect argument.
+机器人命令： `/set` 与 `/get` 可以设置与获取当前的配置。 
 
-Syntax for `/set` ➜  `/set key: value`
-Syntax for `/get` ➜  `/get key`
+SET语法为： `/set` ➜  `/set key: value`
+GET语法为： `/get` ➜  `/get key`
 
 """
 
 COMMANDS = {
-    "start": "start the bot or check if alive",
-    "set": "set the value for a config variable",
-    "get": "know the value of a config variable",
-    "help": "learn how to use the bot",
+    "start": "尝试启动BOT，查看是否在工作中",
+    "set": "通过SET命令设置配置",
+    "get": "通过GET命令获取配置",
+    "help": "使用帮助",
 }
 
 config = Config()
