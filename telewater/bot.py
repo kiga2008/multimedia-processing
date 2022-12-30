@@ -22,9 +22,9 @@ async def bot_help(event):
 
 async def set_config(event):
 
-    notes = f"""This command is used to set the value of a config variable.
-    Usage `/set key: val`
-    Example `/set watermark: https://link/to/watermark.png`
+    notes = f"""这条SET命令是用来设置配置的
+    使用： `/set key: val`
+    例子： `/set watermark: https://link/to/watermark.png`
     {gen_kv_str()}
     """.replace(
         "    ", ""
@@ -37,13 +37,13 @@ async def set_config(event):
         splitted = pos_arg.split(":", 1)
 
         if not len(splitted) == 2:
-            raise ValueError("Incorrect argument format")
+            raise ValueError("错误的配置格式")
 
         key, value = [item.strip() for item in splitted]
 
         config_dict = conf.config.dict()
         if not key in config_dict.keys():
-            raise ValueError(f"The key {key} is not a valid key in configuration.")
+            raise ValueError(f"KEY： {key} 错误，请重新检查")
 
         config_dict[key] = value
         print(config_dict)
@@ -54,7 +54,7 @@ async def set_config(event):
         if key == "watermark":
             cleanup("image.png")
             download_image(url=value)
-        await event.respond(f"The value of {key} was set to {value}")
+        await event.respond(f"KEY： {key} ，成功被设置成： {value}")
 
     except ValueError as err:
         print(err)
@@ -68,9 +68,9 @@ async def set_config(event):
 
 async def get_config(event):
 
-    notes = f"""This command is used to get the value of a configuration variable.
-    Usage `/get key`
-    Example `/get x_off`
+    notes = f"""这条GET命令是用来获取配置的
+    使用： `/get key`
+    例子： `/get x_off`
     {gen_kv_str()}
     """.replace(
         "    ", ""
@@ -94,7 +94,7 @@ async def get_config(event):
 async def watermarker(event):
 
     if not (event.gif or event.photo or event.video):
-        await event.respond("File not supported.")
+        await event.respond("文件格式不支持")
         return
 
     org_file = stamp(await event.download_media(""), user=str(event.sender_id))
