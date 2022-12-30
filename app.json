@@ -1,11 +1,11 @@
 {
-  "name": "telewater",
+  "name": "西安儒雅群水印BOT",
   "stack": "container",
-  "description": "A telegram bot that applies watermark on images, gifs, and videos.",
+  "description": "西安儒雅群水印专属BOT",
   "keywords": ["telegram", "watermark", "bot"],
-  "website": "https://aahnik.dev",
-  "repository": "https://github.com/aahnik/telewater",
-  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png",
+  "website": "https://github.com/kiga2008/",
+  "repository": "https://github.com/kiga2008/",
+  "logo": "https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",
 
   "env": {
     "API_ID": {
