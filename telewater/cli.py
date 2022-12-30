@@ -86,9 +86,8 @@ def main(
         help="Show version and exit.",
     ),
 ):
-    """A telegram bot that applies watermark on images, gifs and videos.
-
-    For detailed docs read : https://github.com/aahnik/telewater
+    """
+    西安儒雅群专属水印机器人
     """
 
     if FAKE:
