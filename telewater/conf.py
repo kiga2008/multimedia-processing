@@ -17,13 +17,6 @@ class Config(BaseModel):
         if not val in allowed:
             raise ValueError(f"Choose preset from {allowed}")
         return val
-    
-    @validator("watermark")
-    def validate_preset(val):
-        allowed = ["1", "2", "3", "4", "5"]
-        if not val in allowed:
-            raise ValueError(f"Choose preset from {allowed}")
-        return val
 
 START = """正在工作中!"""
 
