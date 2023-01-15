@@ -19,27 +19,27 @@ async def bot_help(event):
     finally:
         raise events.StopPropagation
 
-async def setwm1(event):
+async def set_wm1(event):
     await event.respond(conf.SETWM1)
     config.curWM = "ruya.png"
     raise events.StopPropagation
     
-async def setwm2(event):
+async def set_wm2(event):
     await event.respond(conf.SETWM2)
     config.curWM = "@httpxianruya.png"
     raise events.StopPropagation
     
-async def setwm3(event):
+async def set_wm3(event):
     await event.respond(conf.SETWM3)
     config.curWM = "@xianruya.png"
     raise events.StopPropagation
     
-async def setwm4(event):
+async def set_wm4(event):
     await event.respond(conf.SETWM4)
     config.curWM = "@xahades.png"
     raise events.StopPropagation
     
-async def setwm5(event):
+async def set_wm5(event):
     await event.respond(conf.SETWM5)
     config.curWM = "@prehades.png"
     raise events.StopPropagation
