@@ -75,27 +75,27 @@ async def set_config(event):
         conf.config = conf.Config(**config_dict)
 
         print(conf.config)
-        if key == "watermark" && value == "1":
+        if key == "watermark" and value == "1":
             cleanup("image.png")
             download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
         await event.respond(f"KEY： {key} ，成功被设置成： {"西安儒雅群 t.me/xianruya"}")
 
-        if key == "watermark" && value == "2":
+        if key == "watermark" and value == "2":
             cleanup("image.png")
             download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
         await event.respond(f"KEY： {key} ，成功被设置成： {"https://t.me/xianruya"}")
         
-        if key == "watermark" && value == "3":
+        if key == "watermark" and value == "3":
             cleanup("image.png")
             download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xianruya.png",filename="@xianruya.png")
         await event.respond(f"KEY： {key} ，成功被设置成： {"@xianruya"}")
         
-        if key == "watermark" && value == "4":
+        if key == "watermark" and value == "4":
             cleanup("image.png")
             download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
         await event.respond(f"KEY： {key} ，成功被设置成： {"@xahades http://t.me/xaHades"}")
         
-        if key == "watermark" && value == "5":
+        if key == "watermark" and value == "5":
             cleanup("image.png")
             download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@prehades.png",filename="@prehades.png")
         await event.respond(f"KEY： {key} ，成功被设置成： {"@PreHades"}")
