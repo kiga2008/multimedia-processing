@@ -5,7 +5,7 @@ from watermark import Position
 
 
 class Config(BaseModel):
-    watermark: str = "https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png"
+    watermark: str = "1"
     frame_rate: int = 15
     preset: str = "ultrafast"
     position: Position = Position.centre
@@ -16,7 +16,13 @@ class Config(BaseModel):
         if not val in allowed:
             raise ValueError(f"Choose preset from {allowed}")
         return val
-
+    
+    @validator("watermark")
+    def validate_preset(val):
+        allowed = ["1", "2", "3", "4", "5"]
+        if not val in allowed:
+            raise ValueError(f"Choose preset from {allowed}")
+        return val
 
 START = """正在工作中!"""
 
