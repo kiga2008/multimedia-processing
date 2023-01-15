@@ -33,11 +33,11 @@ GET语法为： `/get` ➜  `/get key`
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
     "get": "获取当前配置",
-    "setWM1" : "西安儒雅群，t.me/xianruya",
-    "setWM2" : "https://t.me/xianruya",
-    "setWM3" : "@xianruya",
-    "setWM4" : "@xahades http://t.me/xaHades",
-    "setWM5" : "@PreHades",
+    "setWM1": "西安儒雅群，t.me/xianruya",
+    "setWM2": "https://t.me/xianruya",
+    "setWM3": "@xianruya",
+    "setWM4": "@xahades http://t.me/xaHades",
+    "setWM5": "@PreHades",
     "set": "通过SET命令设置配置",
     "help": "使用帮助",
 }
