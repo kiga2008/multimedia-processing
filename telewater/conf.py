@@ -5,7 +5,7 @@ from watermark import Position
 
 
 class Config(BaseModel):
-    watermark: str = "1"
+    watermark: str = "https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png"
     frame_rate: int = 15
     preset: str = "ultrafast"
     position: Position = Position.centre
