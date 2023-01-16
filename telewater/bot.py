@@ -21,6 +21,21 @@ async def set_wm2(event):
     await event.respond(conf.SETWM2)
     conf.config.curWM = "@httpxianruya.png"
     raise events.StopPropagation
+   
+async def set_wm3(event):
+    await event.respond(conf.SETWM3)
+    conf.config.curWM = "@xianruya.png"
+    raise events.StopPropagation
+    
+async def set_wm4(event):
+    await event.respond(conf.SETWM4)
+    conf.config.curWM = "@xahades.png"
+    raise events.StopPropagation
+    
+async def set_wm5(event):
+    await event.respond(conf.SETWM5)
+    conf.config.curWM = "@prehades.png"
+    raise events.StopPropagation
     
 async def bot_help(event):
     try:
@@ -67,6 +82,12 @@ async def set_config(event):
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
             elif value == "2":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
+            elif value == "3":
+                download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xianruya.png",filename="@xianruya.png")
+            elif value == "4":
+                download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
+            elif value == "5":
+                download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@prehades.png",filename="@prehades.png")
         await event.respond(f"KEY： {key} ，设置成功")
         
 
