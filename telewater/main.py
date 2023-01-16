@@ -14,9 +14,7 @@ from telewater.utils import download_image
 def start_bot(API_ID: int, API_HASH: str, name: str, token: str):
     os.makedirs(name, exist_ok=True)
     os.chdir(name)
-
-    download_image(url=conf.config.watermark)
-
+    
     client = TelegramClient(name, API_ID, API_HASH).start(bot_token=token)
 
     client(
