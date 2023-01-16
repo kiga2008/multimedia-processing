@@ -115,10 +115,9 @@ async def watermarker(event):
 
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
-    "help": (bot_help, events.NewMessage(pattern="/help")),
+    "help": (set_wm1, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "get": (get_config, events.NewMessage(pattern="/get")),
-    "setWM1": (set_wm1, events.NewMessage(pattern="/setWM1")),
     "watermarker": (watermarker, events.NewMessage()),
 }
 # this is a dictionary where the keys are the unique string identifier for the events
