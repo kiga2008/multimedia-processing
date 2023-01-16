@@ -22,7 +22,10 @@ class Config(BaseModel):
 START = """正在工作中!"""
 
 SETWM1 = """成功设置水印为『西安儒雅群，t.me/xianruya』"""
-SETWM2 = """成功设置水印为『http://t.me/xianruya』"""
+SETWM2 = """成功设置水印为『https://t.me/xianruya』"""
+SETWM3 = """成功设置水印为『@xianruya』"""
+SETWM4 = """成功设置水印为『@xahades http://t.me/xaHades』"""
+SETWM5  = """成功设置水印为『@PreHades』"""
 
 HELP = """
 使用方法很简单，只需要发送一张图片、视频、gif，机器人会自动打好水印并返回。
