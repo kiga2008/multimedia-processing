@@ -37,7 +37,7 @@ COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
     "set": "设置当前配置",
     "get": "获取当前配置",
-    "help": "使用帮助",
+    "help": "设置wm1",
 }
 
 config = Config()
