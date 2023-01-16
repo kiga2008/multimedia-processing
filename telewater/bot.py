@@ -65,7 +65,7 @@ async def set_config(event):
             cleanup("image.png")
             if value == "1":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
-            else if value == "2":
+            elif value == "2":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
         await event.respond(f"KEY： {key} ，设置成功")
         
