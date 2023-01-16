@@ -12,37 +12,16 @@ async def start(event):
     await event.respond(conf.START)
     raise events.StopPropagation
 
-
+async def set_wm1(event):
+    await event.respond(conf.START)
+    raise events.StopPropagation
+    
 async def bot_help(event):
     try:
         await event.respond(conf.HELP)
     finally:
         raise events.StopPropagation
 
-async def set_wm1(event):
-    await event.respond(conf.SETWM1)
-    config.curWM = "ruya.png"
-    raise events.StopPropagation
-    
-async def set_wm2(event):
-    await event.respond(conf.SETWM2)
-    config.curWM = "@httpxianruya.png"
-    raise events.StopPropagation
-    
-async def set_wm3(event):
-    await event.respond(conf.SETWM3)
-    config.curWM = "@xianruya.png"
-    raise events.StopPropagation
-    
-async def set_wm4(event):
-    await event.respond(conf.SETWM4)
-    config.curWM = "@xahades.png"
-    raise events.StopPropagation
-    
-async def set_wm5(event):
-    await event.respond(conf.SETWM5)
-    config.curWM = "@prehades.png"
-    raise events.StopPropagation
 
 async def set_config(event):
 
@@ -75,31 +54,11 @@ async def set_config(event):
         conf.config = conf.Config(**config_dict)
 
         print(conf.config)
-        if key == "watermark" and value == "1":
+        if key == "watermark":
             cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： 西安儒雅群 t.me/xianruya")
+            download_image(url=value)
+        await event.respond(f"KEY： {key} ，成功被设置成： {value}")
 
-        if key == "watermark" and value == "2":
-            cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： https://t.me/xianruya")
-        
-        if key == "watermark" and value == "3":
-            cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xianruya.png",filename="@xianruya.png")
-        await event.respond(f"KEY： {key} ，成功被设置成：@xianruya")
-        
-        if key == "watermark" and value == "4":
-            cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： @xahades http://t.me/xaHades")
-        
-        if key == "watermark" and value == "5":
-            cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@prehades.png",filename="@prehades.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： @PreHades")
-        
     except ValueError as err:
         print(err)
         await event.respond(str(err))
@@ -144,7 +103,7 @@ async def watermarker(event):
     org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
     file = File(org_file)
-    wtm = Watermark(File(config.curWM), pos=conf.config.position)
+    wtm = Watermark(File("image.png"), pos=conf.config.position)
 
     out_file = apply_watermark(
         file, wtm, frame_rate=conf.config.frame_rate, preset=conf.config.preset
@@ -155,14 +114,10 @@ async def watermarker(event):
 
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
-    "get": (get_config, events.NewMessage(pattern="/get")),
-    "setwm1" : (set_wm1, events.NewMessage(pattern="/setwm1")),
-    "setwm2" : (set_wm2, events.NewMessage(pattern="/setwm2")),
-    "setwm3" : (set_wm3, events.NewMessage(pattern="/setwm3")),
-    "setwm4" : (set_wm4, events.NewMessage(pattern="/setwm4")),
-    "setwm5" : (set_wm5, events.NewMessage(pattern="/setwm5")),
     "help": (bot_help, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
+    "get": (get_config, events.NewMessage(pattern="/get")),
+    "setWM1": (set_wm1, events.NewMessage(pattern="/setWM1")),
     "watermarker": (watermarker, events.NewMessage()),
 }
 # this is a dictionary where the keys are the unique string identifier for the events
