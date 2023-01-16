@@ -39,9 +39,9 @@ GET语法为： `/get` ➜  `/get key`
 
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
-    "get": "设置wm1",
+    "get": "获取当前配置",
     "set": "设置当前配置",
-    "help": "设置wm2",
+    "help": "使用帮助",
 }
 
 config = Config()
