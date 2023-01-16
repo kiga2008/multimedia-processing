@@ -61,15 +61,14 @@ async def set_config(event):
 
         print(conf.config)
         
-        if key == "watermark" and value == "1":
+        if key == "watermark":
             cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： 西安儒雅群 t.me/xianruya")
+            if value == "1":
+                download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
+            else if value == "2":
+                download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
+        await event.respond(f"KEY： {key} ，设置成功")
         
-        if key == "watermark" and value == "2":
-            cleanup("image.png")
-            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
-        await event.respond(f"KEY： {key} ，成功被设置成： https://t.me/xianruya")
 
     except ValueError as err:
         print(err)
