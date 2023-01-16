@@ -12,7 +12,10 @@ async def start(event):
     await event.respond(conf.START)
     raise events.StopPropagation
 
-
+async def set_wm1(event):
+    await event.respond(conf.START)
+    raise events.StopPropagation
+    
 async def bot_help(event):
     try:
         await event.respond(conf.HELP)
@@ -114,6 +117,7 @@ ALL_EVENTS = {
     "help": (bot_help, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "get": (get_config, events.NewMessage(pattern="/get")),
+    "setWM1": (set_wm1, events.NewMessage(pattern="/setWM1")),
     "watermarker": (watermarker, events.NewMessage()),
 }
 # this is a dictionary where the keys are the unique string identifier for the events
