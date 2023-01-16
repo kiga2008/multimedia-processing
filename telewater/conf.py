@@ -39,8 +39,8 @@ GET语法为： `/get` ➜  `/get key`
 
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
-    "set": "设置当前配置",
     "get": "设置wm1",
+    "set": "设置当前配置",
     "help": "设置wm2",
 }
 
