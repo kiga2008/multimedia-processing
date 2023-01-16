@@ -13,7 +13,8 @@ async def start(event):
     raise events.StopPropagation
 
 async def set_wm1(event):
-    await event.respond(conf.START)
+    await event.respond(conf.SETWM1)
+    config.curWM = "ruya.png"
     raise events.StopPropagation
     
 async def bot_help(event):
@@ -103,7 +104,7 @@ async def watermarker(event):
     org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
     file = File(org_file)
-    wtm = Watermark(File("image.png"), pos=conf.config.position)
+    wtm = Watermark(File(config.curWM), pos=conf.config.position)
 
     out_file = apply_watermark(
         file, wtm, frame_rate=conf.config.frame_rate, preset=conf.config.preset
