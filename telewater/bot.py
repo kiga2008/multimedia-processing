@@ -147,7 +147,7 @@ async def watermarker(event):
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
     "get": (get_config, events.NewMessage(pattern="/get")),
-    "setWM1": (set_wm1, events.NewMessage(pattern="/setWM1")),
+    "setwmone": (set_wm1, events.NewMessage(pattern="/setWM1")),
     "setWM2": (set_wm1, events.NewMessage(pattern="/setWM2")),
     "setWM3": (set_wm1, events.NewMessage(pattern="/setWM3")),
     "setWM4": (set_wm1, events.NewMessage(pattern="/setWM4")),
