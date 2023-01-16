@@ -9,6 +9,7 @@ class Config(BaseModel):
     frame_rate: int = 15
     preset: str = "ultrafast"
     position: Position = Position.centre
+    curWM : str = "image.png"
 
     @validator("preset")
     def validate_preset(val):
