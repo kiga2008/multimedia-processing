@@ -40,7 +40,7 @@ GET语法为： `/get` ➜  `/get key`
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
     "get": "获取当前配置",
-    "setWM1": "设置水印1号",
+    "setwmone": "设置水印1号",
     "set": "设置当前配置",
     "help": "使用帮助",
 }
