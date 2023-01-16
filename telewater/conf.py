@@ -40,7 +40,11 @@ GET语法为： `/get` ➜  `/get key`
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
     "get": "获取当前配置",
-    "setwmone": "设置水印1号",
+    "setwm1" : "西安儒雅群，t.me/xianruya",
+    "setwm2" : "https://t.me/xianruya",
+    "setwm3" : "@xianruya",
+    "setwm4" : "@xahades http://t.me/xaHades",
+    "setwm5" : "@PreHades",
     "set": "设置当前配置",
     "help": "使用帮助",
 }
