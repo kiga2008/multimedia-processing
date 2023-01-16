@@ -12,9 +12,9 @@ async def start(event):
     await event.respond(conf.START)
     raise events.StopPropagation
 
-async def set_wm1(event):
+async def set_wm2(event):
     await event.respond(conf.SETWM1)
-    config.curWM = "ruya.png"
+    conf.config.curWM = "@httpxianruya.png"
     raise events.StopPropagation
     
 async def bot_help(event):
@@ -55,10 +55,10 @@ async def set_config(event):
         conf.config = conf.Config(**config_dict)
 
         print(conf.config)
-        if key == "watermark":
+        if key == "watermark" and value == "2":
             cleanup("image.png")
-            download_image(url=value)
-        await event.respond(f"KEY： {key} ，成功被设置成： {value}")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
+        await event.respond(f"KEY： {key} ，成功被设置成： https://t.me/xianruya")
 
     except ValueError as err:
         print(err)
@@ -115,7 +115,7 @@ async def watermarker(event):
 
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
-    "help": (set_wm1, events.NewMessage(pattern="/help")),
+    "help": (set_wm2, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "get": (get_config, events.NewMessage(pattern="/get")),
     "watermarker": (watermarker, events.NewMessage()),
