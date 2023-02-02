@@ -133,7 +133,7 @@ async def watermarker(event):
     org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
     file = File(org_file)
-    wtm = Watermark(File(config.curWM), pos=conf.config.position)
+    wtm = Watermark(File(config.curWM), pos=Position.centre)
 
     out_file = apply_wm(
         file, wtm, frame_rate=conf.config.frame_rate, preset=conf.config.preset
