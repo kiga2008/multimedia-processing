@@ -124,7 +124,6 @@ async def get_config(event):
 
         raise events.StopPropagation
 
-
 async def watermarker(event):
 
     if not (event.gif or event.photo or event.video):
@@ -134,15 +133,60 @@ async def watermarker(event):
     org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
     file = File(org_file)
-    wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
+    wtm = Watermark(File(config.curWM), pos=conf.config.position)
 
-    out_file = apply_watermark(
+    out_file = apply_wm(
         file, wtm, frame_rate=conf.config.frame_rate, preset=conf.config.preset
     )
     await event.client.send_file(event.sender_id, out_file)
     cleanup(org_file, out_file)
 
+    
+"""TRY WM BEGIN"""
+def apply_wm(
+    file: File,
+    wtm: Watermark,
+    output_file: str = "",
+    frame_rate: int = 15,
+    preset: str = "ultrafast",
+    overwrite: bool = True,
+) -> str:
 
+    if not output_file:
+        output_file = f"watered_{file.path}"
+
+    cmd = [
+        "ffmpeg",
+        "-i",
+        file.path,
+        "-i",
+        wtm.overlay.path,
+        "-an",
+        "-dn",
+        "-sn",
+        "-r",
+        str(frame_rate),
+        "-preset",
+        preset,
+        "-crf",
+        str(30),
+        "-movflags",
+        "+faststart",
+        "-tune",
+        "zerolatency",
+        "-tune",
+        "fastdecode",
+        "-filter_complex",
+        f"overlay={wtm.offset}",
+        output_file,
+    ]
+
+    if os.path.isfile(output_file) and overwrite:
+        os.remove(output_file)
+
+    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return output_file
+"""TRY WM BEGIN"""
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
     "get": (get_config, events.NewMessage(pattern="/get")),
