@@ -77,7 +77,6 @@ async def set_config(event):
         print(conf.config)
         
         if key == "watermark":
-            cleanup("image.png")
             if value == "1":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
             elif value == "2":
