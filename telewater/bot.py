@@ -1,6 +1,6 @@
 """ This module defines the functions that handle different events.
 """
-
+import os
 from telethon import events
 from watermark import File, Watermark, apply_watermark
 
