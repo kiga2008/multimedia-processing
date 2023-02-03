@@ -126,19 +126,23 @@ async def get_config(event):
 
 async def watermarker(event):
 
-    if not (event.gif or event.photo or event.video):
+    if not (event.gif or event.photo or event.video or event.text):
         await event.respond("文件格式不支持")
         return
+        
+    if(event.text):
+        conf.config.curWM = event.text
+        await event.respond("成功设置新文字水印！")
+    else:
+        org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
-    org_file = stamp(await event.download_media(""), user=str(event.sender_id))
+        file = File(org_file)
 
-    file = File(org_file)
-
-    out_file = apply_wm(
-        file,wtm=conf.config.curWM, frame_rate=conf.config.frame_rate, preset=conf.config.preset
-    )
-    await event.client.send_file(event.sender_id, out_file)
-    cleanup(org_file, out_file)
+        out_file = apply_wm(
+            file,wtm=conf.config.curWM, frame_rate=conf.config.frame_rate, preset=conf.config.preset
+        )
+        await event.client.send_file(event.sender_id, out_file)
+        cleanup(org_file, out_file)
 
     
 """TRY WM BEGIN"""
