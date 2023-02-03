@@ -129,7 +129,7 @@ async def watermarker(event):
     if not (event.gif or event.photo or event.video or event.text):
         await event.respond("文件格式不支持")
         return
-        
+
     if(event.text):
         conf.config.curWM = event.text
         await event.respond("成功设置新文字水印！")
@@ -166,7 +166,7 @@ def apply_wm(
         "-i",
         f"color=black@0:s=300*300,format=yuva420p",
         "-filter_complex",
-        f"[1]trim=end_frame=1,drawtext=font='msyh':text={wtm}:fontcolor=white:fontsize=24:x=0:y=150,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=20x20,trim=end_frame=1[wm];[0][wm]overlay=0:0",
+        f"[1]trim=end_frame=1,drawtext=font='simhei':text={wtm}:fontcolor=white:fontsize=32:x=0:y=150,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=15x15,trim=end_frame=1[wm];[0][wm]overlay=0:0",
         "-c:a",
         "copy",
         "-preset",
