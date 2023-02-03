@@ -154,34 +154,7 @@ def apply_wm(
 
     if not output_file:
         output_file = f"watered_{file.path}"
-"""
     cmd = [
-        "ffmpeg",
-        "-i",
-        file.path,
-        "-i",
-        wtm.overlay.path,
-        "-an",
-        "-dn",
-        "-sn",
-        "-r",
-        str(frame_rate),
-        "-preset",
-        preset,
-        "-crf",
-        str(30),
-        "-movflags",
-        "+faststart",
-        "-tune",
-        "zerolatency",
-        "-tune",
-        "fastdecode",
-        "-filter_complex",
-        f"overlay={wtm.offset}",
-        output_file,
-    ]
-"""
-cmd = [
         "ffmpeg",
         "-i",
         file.path,
