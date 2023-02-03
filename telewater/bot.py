@@ -6,7 +6,7 @@ from watermark import File, Watermark, apply_watermark
 
 from telewater import conf
 from telewater.utils import cleanup, download_image, gen_kv_str, get_args, stamp
-
+import subprocess
 
 async def start(event):
     await event.respond(conf.START)
