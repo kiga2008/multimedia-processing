@@ -14,12 +14,12 @@ async def start(event):
 
 async def set_wm1(event):
     await event.respond(conf.SETWM1)
-    conf.config.curWM = "西安儒雅群 https://t.me/xianruya"
+    conf.config.curWM = "西安儒雅群 t.me/xianruya"
     raise events.StopPropagation
     
 async def set_wm2(event):
     await event.respond(conf.SETWM2)
-    conf.config.curWM = "@https://t.me/xianruya"
+    conf.config.curWM = "t.me/xianruya"
     raise events.StopPropagation
    
 async def set_wm3(event):
@@ -29,7 +29,7 @@ async def set_wm3(event):
     
 async def set_wm4(event):
     await event.respond(conf.SETWM4)
-    conf.config.curWM = "@xahades https://t.me/XaHades"
+    conf.config.curWM = "@xahades t.me/XaHades"
     raise events.StopPropagation
     
 async def set_wm5(event):
@@ -162,7 +162,7 @@ def apply_wm(
         "-i",
         f"color=black@0:s=300*300,format=yuva420p",
         "-filter_complex",
-        f"[1]trim=end_frame=1,drawtext=font='msyh':text={wtm}:fontcolor=white:fontsize=24:x=0:y=150:alpha=0.9,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=20x20,trim=end_frame=1[wm];[0][wm]overlay=0:0",
+        f"[1]trim=end_frame=1,drawtext=font='msyh':text={wtm}:fontcolor=white:fontsize=24:x=0:y=150,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=20x20,trim=end_frame=1[wm];[0][wm]overlay=0:0",
         "-c:a",
         "copy",
         "-preset",
