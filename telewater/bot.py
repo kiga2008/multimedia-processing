@@ -166,7 +166,7 @@ def apply_wm(
         "-i",
         f"color=white@0:s=300*300,format=yuva420p",
         "-filter_complex",
-        f"[1]trim=end_frame=1,drawtext=font='fonts-takao-mincho':text={wtm}:fontcolor=white:fontsize=24:x=0:y=150:alpha=0.9,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=15x15,trim=end_frame=1[wm];[0][wm]overlay=0:0",
+        f"[1]trim=end_frame=1,drawtext=font='MoeStandardKai.ttf':text={wtm}:fontcolor=white:fontsize=24:x=0:y=150:alpha=0.9,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=15x15,trim=end_frame=1[wm];[0][wm]overlay=0:0",
         "-c:a",
         "copy",
         "-preset",
