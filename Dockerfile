@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install ffmpeg screen -y
 
-RUN apt update && apt install -y fonts-arphic-ukai
+RUN apt update && apt install -y fonts-takao-mincho
 
 RUN pip install --upgrade pip poetry
 
