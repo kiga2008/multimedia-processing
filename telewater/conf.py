@@ -10,6 +10,8 @@ class Config(BaseModel):
     preset: str = "ultrafast"
     position: Position = Position.centre
     curWM : str = "image.png"
+    color : str = "black"
+    alpha : int = 1
 
     @validator("preset")
     def validate_preset(val):
@@ -21,11 +23,10 @@ class Config(BaseModel):
 
 START = """正在工作中!"""
 
-SETWM1 = """成功设置水印为『西安儒雅群，t.me/xianruya』"""
-SETWM2 = """成功设置水印为『https://t.me/xianruya』"""
-SETWM3 = """成功设置水印为『@xianruya』"""
-SETWM4 = """成功设置水印为『@xahades http://t.me/xaHades』"""
-SETWM5  = """成功设置水印为『@PreHades』"""
+SETWM1 = """图片水印为『西安儒雅群，t.me/xianruya』"""
+SETWM2 = """图片水印为『https://t.me/xianruya』"""
+SETWM3 = """全屏文字水印为『@xianruya』"""
+SETWM4 = """全屏文字水印为『@xahades http://t.me/xaHades』"""
 
 HELP = """
 使用方法很简单，只需要发送一张图片、视频、gif，机器人会自动打好水印并返回。
@@ -40,11 +41,10 @@ GET语法为： `/get` ➜  `/get key`
 COMMANDS = {
     "start": "尝试启动BOT，查看是否在工作中",
     "get": "获取当前配置",
-    "watermark1" : "西安儒雅群，t.me/xianruya",
-    "watermark2" : "https://t.me/xianruya",
-    "watermark3" : "@xianruya",
-    "watermark4" : "@xahades http://t.me/xaHades",
-    "watermark5" : "@PreHades",
+    "watermark1" : "大水印：西安儒雅群",
+    "watermark2" : "大水印：哈迪斯の后花园",
+    "watermark3" : "全屏文字：西安儒雅群t.me/xianruya",
+    "watermark4" : "全屏文字：@XaHades t.me/xaHades",
     "set": "设置当前配置",
     "help": "使用帮助",
 }
