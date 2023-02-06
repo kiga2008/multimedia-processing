@@ -14,27 +14,24 @@ async def start(event):
 
 async def set_wm1(event):
     await event.respond(conf.SETWM1)
-    conf.config.curWM = "西安儒雅群 t.me/xianruya"
+    conf.config.curWM = "pic1"
+    download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
     raise events.StopPropagation
     
 async def set_wm2(event):
     await event.respond(conf.SETWM2)
-    conf.config.curWM = "t.me/xianruya"
+    conf.config.curWM = "pic2"
+    download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
     raise events.StopPropagation
    
 async def set_wm3(event):
     await event.respond(conf.SETWM3)
-    conf.config.curWM = "@xianruya"
+    conf.config.curWM = "西安儒雅群 t.me/xianruya"
     raise events.StopPropagation
     
 async def set_wm4(event):
     await event.respond(conf.SETWM4)
-    conf.config.curWM = "@xahades t.me/XaHades"
-    raise events.StopPropagation
-    
-async def set_wm5(event):
-    await event.respond(conf.SETWM5)
-    conf.config.curWM = "@PreHades"
+    conf.config.curWM = "@XaHades t.me/XaHades"
     raise events.StopPropagation
     
 async def bot_help(event):
@@ -48,7 +45,7 @@ async def set_config(event):
 
     notes = f"""这条SET命令是用来设置配置的
     使用： `/set key: val`
-    例子： `/set watermark: https://link/to/watermark.png`
+    例子： `/set color : white`
     {gen_kv_str()}
     """.replace(
         "    ", ""
@@ -75,7 +72,7 @@ async def set_config(event):
         conf.config = conf.Config(**config_dict)
 
         print(conf.config)
-        
+        """
         if key == "watermark":
             if value == "1":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
@@ -88,7 +85,14 @@ async def set_config(event):
             elif value == "5":
                 download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@prehades.png",filename="@prehades.png")
         await event.respond(f"KEY： {key} ，设置成功")
-        
+        """
+
+        if key == "color":
+            conf.config.color = value
+            await event.respond(f"字体颜色被设置成：{value}")
+        if key == "alpha":
+            conf.config.alpha = value
+            await event.respond(f"字体透明度被设置成：{value}")
 
     except ValueError as err:
         print(err)
@@ -138,11 +142,19 @@ async def watermarker(event):
 
         file = File(org_file)
 
-        out_file = apply_wm(
-            file,wtm=conf.config.curWM, frame_rate=conf.config.frame_rate, preset=conf.config.preset
-        )
-        await event.client.send_file(event.sender_id, out_file)
-        cleanup(org_file, out_file)
+
+        if conf.config.curWM == "pic1" or conf.config.curWM =="pic2":
+            wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
+
+            out_file = apply_watermark(
+                file, wtm, frame_rate=conf.config.frame_rate, preset=conf.config.preset
+            )
+        else:
+            out_file = apply_wm(
+                file,color=conf.config.color,alpha=conf.config.alpha,wtm=conf.config.curWM, frame_rate=conf.config.frame_rate, preset=conf.config.preset
+            )
+            await event.client.send_file(event.sender_id, out_file)
+            cleanup(org_file, out_file)
 
     
 """TRY WM BEGIN"""
@@ -152,6 +164,8 @@ def apply_wm(
     output_file: str = "",
     frame_rate: int = 15,
     preset: str = "ultrafast",
+    color:str = "black",
+    alpha:int = 1,
 ) -> str:
 
     if not output_file:
@@ -164,9 +178,9 @@ def apply_wm(
         "-f",
         "lavfi",
         "-i",
-        f"color=black@0:s=300*300,format=yuva420p",
+        f"color={color}@0:s=300*300,format=yuva420p",
         "-filter_complex",
-        f"[1]trim=end_frame=1,drawtext=font='TakaoPMincho':text={wtm}:fontcolor=black:fontsize=24:x=0:y=150:alpha=1,rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=15x15,trim=end_frame=1[wm];[0][wm]overlay=0:0",
+        f"[1]trim=end_frame=1,drawtext=font='TakaoPMincho':text={wtm}:fontcolor={color}:fontsize=24:x=0:y=150:alpha={alpha},rotate=a=30*PI/180:c=black@0,loop=-1:1:0,tile=15x15,trim=end_frame=1[wm];[0][wm]overlay=0:0",
         "-c:a",
         "copy",
         "-preset",
@@ -187,7 +201,6 @@ ALL_EVENTS = {
     "watermark2": (set_wm2, events.NewMessage(pattern="/watermark2")),
     "watermark3": (set_wm3, events.NewMessage(pattern="/watermark3")),
     "watermark4": (set_wm4, events.NewMessage(pattern="/watermark4")),
-    "watermark5": (set_wm5, events.NewMessage(pattern="/watermark5")),
     "help": (bot_help, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "watermarker": (watermarker, events.NewMessage()),
