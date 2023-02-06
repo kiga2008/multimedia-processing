@@ -153,8 +153,8 @@ async def watermarker(event):
             out_file = apply_wm(
                 file,color=conf.config.color,alpha=conf.config.alpha,wtm=conf.config.curWM, frame_rate=conf.config.frame_rate, preset=conf.config.preset
             )
-            await event.client.send_file(event.sender_id, out_file)
-            cleanup(org_file, out_file)
+        await event.client.send_file(event.sender_id, out_file)
+        cleanup(org_file, out_file)
 
     
 """TRY WM BEGIN"""
