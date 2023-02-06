@@ -14,13 +14,13 @@ async def start(event):
 
 async def set_wm1(event):
     await event.respond(conf.SETWM1)
-    conf.config.curWM = "pic1"
+    conf.config.curWM = "ruya.png"
     download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
     raise events.StopPropagation
     
 async def set_wm2(event):
     await event.respond(conf.SETWM2)
-    conf.config.curWM = "pic2"
+    conf.config.curWM = "@xahades.png"
     download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
     raise events.StopPropagation
    
@@ -143,7 +143,7 @@ async def watermarker(event):
         file = File(org_file)
 
 
-        if conf.config.curWM == "pic1" or conf.config.curWM =="pic2":
+        if conf.config.curWM == "ruya.png" or conf.config.curWM =="@xahades.png":
             wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
 
             out_file = apply_watermark(
