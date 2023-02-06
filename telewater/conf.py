@@ -23,9 +23,9 @@ class Config(BaseModel):
 
 START = """正在工作中!"""
 
-SETWM1 = """图片水印为『西安儒雅群，t.me/xianruya』"""
-SETWM2 = """图片水印为『https://t.me/xianruya』"""
-SETWM3 = """全屏文字水印为『@xianruya』"""
+SETWM1 = """图片水印为『西安儒雅群』"""
+SETWM2 = """图片水印为『哈迪斯の后花园』"""
+SETWM3 = """全屏文字水印为『西安儒雅群t.me/xianruya』"""
 SETWM4 = """全屏文字水印为『@xahades http://t.me/xaHades』"""
 
 HELP = """
