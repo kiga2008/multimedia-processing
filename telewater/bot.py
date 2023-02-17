@@ -141,6 +141,7 @@ async def get_config(event):
 
         raise events.StopPropagation
 
+""" 步骤2，在if条件下增加特例"""
 async def watermarker(event):
 
     if not (event.gif or event.photo or event.video or event.text):
@@ -155,8 +156,6 @@ async def watermarker(event):
 
         file = File(org_file)
 
-""" 步骤2增加特例
-"""
         if conf.config.curWM in {"ruya.png","@xahades.png","@baichuan.png"}:
             wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
 
