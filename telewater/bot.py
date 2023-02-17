@@ -12,6 +12,8 @@ async def start(event):
     await event.respond(conf.START)
     raise events.StopPropagation
 
+""" 步骤1，要改函数名，curWM，要改url，要改respond，要改文字curwm
+"""
 async def set_wm1(event):
     await event.respond(conf.SETWM1)
     conf.config.curWM = "ruya.png"
@@ -26,14 +28,25 @@ async def set_wm2(event):
    
 async def set_wm3(event):
     await event.respond(conf.SETWM3)
+    conf.config.curWM = "@baichuan.png"
+    download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@baichuan.png",filename="@baichuan.png")
+    raise events.StopPropagation
+
+async def set_wm4(event):
+    await event.respond(conf.SETWM4)
     conf.config.curWM = "西安儒雅群 t.me/xianruya"
     raise events.StopPropagation
     
-async def set_wm4(event):
-    await event.respond(conf.SETWM4)
+async def set_wm5(event):
+    await event.respond(conf.SETWM5)
     conf.config.curWM = "@XaHades t.me/XaHades"
     raise events.StopPropagation
-    
+   
+async def set_wm6(event):
+    await event.respond(conf.SETWM6)
+    conf.config.curWM = "海纳百川 @hnbcshare"
+    raise events.StopPropagation
+
 async def bot_help(event):
     try:
         await event.respond(conf.HELP)
@@ -142,8 +155,9 @@ async def watermarker(event):
 
         file = File(org_file)
 
-
-        if conf.config.curWM == "ruya.png" or conf.config.curWM =="@xahades.png":
+""" 步骤2增加特例
+"""
+        if conf.config.curWM == "ruya.png" or conf.config.curWM =="@xahades.png" or conf.config.curWM == "@baichuan.png":
             wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
 
             out_file = apply_watermark(
@@ -194,6 +208,9 @@ def apply_wm(
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return output_file
 """TRY WM BEGIN"""
+
+""" 步骤3顺延即可
+"""
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
     "get": (get_config, events.NewMessage(pattern="/get")),
@@ -201,6 +218,8 @@ ALL_EVENTS = {
     "watermark2": (set_wm2, events.NewMessage(pattern="/watermark2")),
     "watermark3": (set_wm3, events.NewMessage(pattern="/watermark3")),
     "watermark4": (set_wm4, events.NewMessage(pattern="/watermark4")),
+    "watermark5": (set_wm5, events.NewMessage(pattern="/watermark5")),
+    "watermark6": (set_wm6, events.NewMessage(pattern="/watermark6")),
     "help": (bot_help, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "watermarker": (watermarker, events.NewMessage()),
