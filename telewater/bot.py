@@ -44,7 +44,7 @@ async def set_wm5(event):
    
 async def set_wm6(event):
     await event.respond(conf.SETWM6)
-    conf.config.curWM = "海纳百川 @hnbcshare"
+    conf.config.curWM = "海納百川 @hnbcshare"
     raise events.StopPropagation
 
 async def bot_help(event):
