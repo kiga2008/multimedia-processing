@@ -157,7 +157,7 @@ async def watermarker(event):
 
 """ 步骤2增加特例
 """
-        if conf.config.curWM == "ruya.png" or conf.config.curWM =="@xahades.png" or conf.config.curWM == "@baichuan.png":
+        if conf.config.curWM in {"ruya.png","@xahades.png","@baichuan.png"}:
             wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
 
             out_file = apply_watermark(
