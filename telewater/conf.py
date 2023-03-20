@@ -10,8 +10,11 @@ class Config(BaseModel):
     preset: str = "ultrafast"
     position: Position = Position.centre
     curWM : str = "image.png"
+<<<<<<< HEAD
     color : str = "black"
     alpha : int = 1
+=======
+>>>>>>> main
 
     @validator("preset")
     def validate_preset(val):
@@ -19,7 +22,6 @@ class Config(BaseModel):
         if not val in allowed:
             raise ValueError(f"Choose preset from {allowed}")
         return val
-
 
 START = """正在工作中!"""
 
@@ -42,6 +44,7 @@ GET语法为： `/get` ➜  `/get key`
 
 """
 
+<<<<<<< HEAD
 """ 步骤5，改说明即可
 """
 COMMANDS = {
@@ -54,6 +57,23 @@ COMMANDS = {
     "watermark5" : "全屏文字：@XaHades t.me/xaHades",
     "watermark6" : "全屏文字：海纳百川 @hnbcshare",
     "set": "设置当前配置",
+=======
+SETWM1 = """成功设置水印为『西安儒雅群，t.me/xianruya』"""
+SETWM2 = """成功设置水印为『https://t.me/xianruya』"""
+SETWM3 = """成功设置水印为『@xianruya』"""
+SETWM4 = """成功设置水印为『@xahades http://t.me/xaHades』"""
+SETWM5  = """成功设置水印为『@PreHades』"""
+
+COMMANDS = {
+    "start": "尝试启动BOT，查看是否在工作中",
+    "get": "获取当前配置",
+    "set wm 1" : "西安儒雅群，t.me/xianruya",
+    "set wm 2" : "https://t.me/xianruya",
+    "set wm 3" : "@xianruya",
+    "set wm 4" : "@xahades http://t.me/xaHades",
+    "set wm 5" : "@PreHades",
+    "set": "通过SET命令设置配置",
+>>>>>>> main
     "help": "使用帮助",
 }
 

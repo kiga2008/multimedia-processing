@@ -53,6 +53,30 @@ async def bot_help(event):
     finally:
         raise events.StopPropagation
 
+async def set_wm1(event):
+    await event.respond(conf.SETWM1)
+    config.curWM = "ruya.png"
+    raise events.StopPropagation
+    
+async def set_wm2(event):
+    await event.respond(conf.SETWM2)
+    config.curWM = "@httpxianruya.png"
+    raise events.StopPropagation
+    
+async def set_wm3(event):
+    await event.respond(conf.SETWM3)
+    config.curWM = "@xianruya.png"
+    raise events.StopPropagation
+    
+async def set_wm4(event):
+    await event.respond(conf.SETWM4)
+    config.curWM = "@xahades.png"
+    raise events.StopPropagation
+    
+async def set_wm5(event):
+    await event.respond(conf.SETWM5)
+    config.curWM = "@prehades.png"
+    raise events.StopPropagation
 
 async def set_config(event):
 
@@ -85,6 +109,7 @@ async def set_config(event):
         conf.config = conf.Config(**config_dict)
 
         print(conf.config)
+<<<<<<< HEAD
         """
         if key == "watermark":
             if value == "1":
@@ -106,7 +131,33 @@ async def set_config(event):
         if key == "alpha":
             conf.config.alpha = value
             await event.respond(f"字体透明度被设置成：{value}")
+=======
+        if key == "watermark" and value == "1":
+            cleanup("image.png")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/ruya.png",filename="ruya.png")
+        await event.respond(f"KEY： {key} ，成功被设置成： 西安儒雅群 t.me/xianruya")
+>>>>>>> main
 
+        if key == "watermark" and value == "2":
+            cleanup("image.png")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@httpxianruya.png",filename="@httpxianruya.png")
+        await event.respond(f"KEY： {key} ，成功被设置成： https://t.me/xianruya")
+        
+        if key == "watermark" and value == "3":
+            cleanup("image.png")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xianruya.png",filename="@xianruya.png")
+        await event.respond(f"KEY： {key} ，成功被设置成：@xianruya")
+        
+        if key == "watermark" and value == "4":
+            cleanup("image.png")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@xahades.png",filename="@xahades.png")
+        await event.respond(f"KEY： {key} ，成功被设置成： @xahades http://t.me/xaHades")
+        
+        if key == "watermark" and value == "5":
+            cleanup("image.png")
+            download_image(url="https://raw.githubusercontent.com/kiga2008/watermarkbot/main/@prehades.png",filename="@prehades.png")
+        await event.respond(f"KEY： {key} ，成功被设置成： @PreHades")
+        
     except ValueError as err:
         print(err)
         await event.respond(str(err))
@@ -154,7 +205,12 @@ async def watermarker(event):
     else:
         org_file = stamp(await event.download_media(""), user=str(event.sender_id))
 
+<<<<<<< HEAD
         file = File(org_file)
+=======
+    file = File(org_file)
+    wtm = Watermark(File(config.curWM), pos=conf.config.position)
+>>>>>>> main
 
         if conf.config.curWM in {"ruya.png","@xahades.png","@baichuan.png"}:
             wtm = Watermark(File(conf.config.curWM), pos=conf.config.position)
@@ -213,12 +269,20 @@ def apply_wm(
 ALL_EVENTS = {
     "start": (start, events.NewMessage(pattern="/start")),
     "get": (get_config, events.NewMessage(pattern="/get")),
+<<<<<<< HEAD
     "watermark1": (set_wm1, events.NewMessage(pattern="/watermark1")),
     "watermark2": (set_wm2, events.NewMessage(pattern="/watermark2")),
     "watermark3": (set_wm3, events.NewMessage(pattern="/watermark3")),
     "watermark4": (set_wm4, events.NewMessage(pattern="/watermark4")),
     "watermark5": (set_wm5, events.NewMessage(pattern="/watermark5")),
     "watermark6": (set_wm6, events.NewMessage(pattern="/watermark6")),
+=======
+    "setwm1" : (set_wm1, events.NewMessage(pattern="/setwm1")),
+    "setwm2" : (set_wm2, events.NewMessage(pattern="/setwm2")),
+    "setwm3" : (set_wm3, events.NewMessage(pattern="/setwm3")),
+    "setwm4" : (set_wm4, events.NewMessage(pattern="/setwm4")),
+    "setwm5" : (set_wm5, events.NewMessage(pattern="/setwm5")),
+>>>>>>> main
     "help": (bot_help, events.NewMessage(pattern="/help")),
     "set": (set_config, events.NewMessage(pattern="/set")),
     "watermarker": (watermarker, events.NewMessage()),
