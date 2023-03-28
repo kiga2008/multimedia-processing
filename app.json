@@ -10,25 +10,25 @@
   "env": {
     "API_ID": {
       "description": "Put the API ID obtained from my.telegram.org",
-      "value": "",
+      "value": "20986670",
       "required": true
     },
 
     "API_HASH": {
       "description": "Put the API HASH obtained from my.telegram.org",
-      "value": "",
+      "value": "5b1436f8acff5914652c0bc731e6f518",
       "required": true
     },
 
     "BOT_TOKEN": {
       "description": "Create a new bot with BotFather and put token here",
-      "value": "",
+      "value": "5891020167:AAFPM0sJlO6co_4DGuZFca4Nvg2WN9yoBvg",
       "required": true
     },
 
     "BOT_USERNAME": {
       "description": "Create a new bot with BotFather and put token here",
-      "value": "botusername",
+      "value": "儒雅的水印bot",
       "required": true
     }
   }
